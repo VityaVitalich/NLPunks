@@ -20,16 +20,15 @@ import random
 import torch.nn as nn
 import torch.distributed
 import torch.nn.functional as F
-import torch.tensor
 from .dataset import PadBatchSeq
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 from .optim import Adam, NoamOpt
 from .loss import LabelSmoothingLoss
-from metrics.eval_distinct import eval_distinct
-from metrics.eval_bleu import eval_bleu
-from metrics.eval_f1 import eval_f1
+from NLPunks.dialog_model.metrics.eval_distinct import eval_distinct
+from NLPunks.dialog_model.metrics.eval_bleu import eval_bleu
+from NLPunks.dialog_model.metrics.eval_f1 import eval_f1
 
 
 class Trainer:
