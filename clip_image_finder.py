@@ -16,7 +16,7 @@ class CLIPImageFinder:
     def __init__(self, photo_ids_path, photo_features_path, device='cpu'):
         self.device = device
         self.model, self.preprocess = clip.load("ViT-B/32", device=self.device)
-        photo_ids = pd.read_csv(photo_ids_path)
+        photo_ids = pd.read_csv(photo_ids_path)[:50000]
         self.photo_ids = list(photo_ids['photo_id'])
 
         photo_features = np.load(photo_features_path)
