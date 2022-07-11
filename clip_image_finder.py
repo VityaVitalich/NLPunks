@@ -39,15 +39,17 @@ class CLIPImageFinder:
 
         # Return the photo IDs of the best matches
         best_photos = []
+        best_scores = []
         for idx in best_photo_idx:
             if len(best_photos) == results_count:
                 break
             try:
                 best_photos.append(self.load_photo(self.photo_ids[idx]))
+                best_scores.append(similarities[idx])
             except Exception:
                 continue
 
-        return best_photos
+        return best_photos, best_scores
 
     def load_photo(self, photo_id):
         # Get the URL of the photo resized to have a width of 320px
@@ -60,6 +62,6 @@ class CLIPImageFinder:
         text_features = self.encode_search_query(search_query)
 
         # Find the best matches
-        best_photos = self.find_best_matches(text_features, self.photo_features, self.photo_ids, results_count)
+        best_photos, best_scores = self.find_best_matches(text_features, self.photo_features, self.photo_ids, results_count)
         # Display the best photos
-        return best_photos
+        return best_photos, best_scores
