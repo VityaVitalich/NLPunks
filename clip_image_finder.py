@@ -19,7 +19,7 @@ class CLIPImageFinder:
         photo_ids = pd.read_csv(photo_ids_path)[:50000]
         self.photo_ids = list(photo_ids['photo_id'])
 
-        photo_features = np.load(photo_features_path)
+        photo_features = np.load(photo_features_path)[:50000]
         self.photo_features = torch.from_numpy(photo_features).to(self.device)
 
     def encode_search_query(self, search_query):
